@@ -13,21 +13,23 @@ import { FlatList } from "react-native";
 import { categories } from "../../utils/categories";
 import { Button } from "../../components/Forms/Button";
 
-interface Category {
-    key: string;
-    name: string;
-}
-
-interface Props {
-    category: string;
-    setCategory: (category: Category) => void;
-    closeSelectCategory: () => void;
-}
+interface CategoryProps {
+    key: string
+    name: string
+    icon: string
+  }
+  interface Props {
+    title?: string;
+    category?: CategoryProps
+    setCategory?: (category: CategoryProps) => void
+    closeSelectCategory?: () => void
+  }
 
 export const CategorySelect = ({
+    title,
     category,
     setCategory,
-    closeSelectCategory,
+    closeSelectCategory
 }: Props) => {
 
     return (
