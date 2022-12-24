@@ -3,7 +3,7 @@ import { Modal } from "react-native";
 
 import { Button } from "../../components/Forms/Button";
 import { TransactionTypeButton } from "../../components/Forms/TransactionTypeButton";
-import { CategorySelectButton } from "../../components/Forms/CategorySelectButton";
+// import { CategorySelectButton } from "../../components/Forms/CategorySelectButton";
 
 import { 
   Container, 
@@ -26,8 +26,7 @@ export const Register = () => {
 
   const [category, setCategory] = useState({
     key: "category",
-    name: "categoria",
-    icon: 'List'
+    name: "categoria"
   });
 
   const {
@@ -89,15 +88,12 @@ export const Register = () => {
             </TransactionsTypes>
             
             {/* <CategorySelectButton 
-              title={category.name}
               onPress={() => console.log('???')} 
-              icon={category.icon}              
               /> */}
 
-              <CtgButton title={category.name}    //USAR ESTE BUTTON
-              icon={category.icon}     
-              onPress={() => console.log('???')
-            }         
+              <CtgButton                //USAR ESTE BUTTON
+              title={category.name}    
+              onPress={handleOpenSelectCategoryModal}         
               />
            
           </Fields>
@@ -108,7 +104,7 @@ export const Register = () => {
         </Form>
 
         <Modal visible={categoryModalOpen}>
-          <CategorySelect
+        <CategorySelect
             category={category}
             setCategory={setCategory}
             closeSelectCategory={handleCloseSelectCategoryModal}

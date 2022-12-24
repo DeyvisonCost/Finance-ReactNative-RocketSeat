@@ -22,7 +22,7 @@ export const Category = styled.Text`
 //   color: ${({ theme }) => theme.colors.text};
 //   font-size: ${RFValue(20)}px;
 // `
-export const IconFeather = styled(Feather)`
+export const Icon = styled(MaterialIcons)`
   color: ${({ theme }) => theme.colors.text};
   font-size: ${RFValue(18)}px;
   margin-right: 10px;

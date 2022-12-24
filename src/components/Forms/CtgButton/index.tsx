@@ -1,22 +1,22 @@
 import React from "react";
-import { Category, Container, IconFeather } from "./style";
+import { Category, CategorySelected, Container, Icon } from "./style";
+import { RectButtonProps } from "react-native-gesture-handler";
 
-interface Props{
-    title: string;
-    icon: string;
-    onPress: () => void;
+interface Props extends RectButtonProps {
+  title: string;
+  icon?: string;
+  onPress: () => void;
 }
 
-export const CtgButton = ({title, icon, onPress}:Props) => {
-
-    return (
-        <>
-            <Container onPress={onPress}>
-                <Category>
-                    {title}
-                </Category>
-                <IconFeather name={icon}/>
-            </Container>
-        </>
-    )
-}
+export const CtgButton = ({ title, onPress, ...rest }: Props) => {
+  return (
+    <>
+      <Container onPress={onPress} >
+        <CategorySelected>
+          <Category>{title}</Category>
+        </CategorySelected>
+        <Icon name={"keyboard-arrow-down"} />
+      </Container>
+    </>
+  );
+};
