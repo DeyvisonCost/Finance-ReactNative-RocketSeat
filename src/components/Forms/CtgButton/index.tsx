@@ -10,10 +10,10 @@ interface Props extends RectButtonProps {
 
 export const CtgButton = ({ title, onPress, ...rest }: Props) => {
   return (
-    <>
+    <> 
       <Container onPress={onPress} >
         <CategorySelected>
-          <Category>{title}</Category>
+          <Category>{title}</Category> 
         </CategorySelected>
         <Icon name={"keyboard-arrow-down"} />
       </Container>
