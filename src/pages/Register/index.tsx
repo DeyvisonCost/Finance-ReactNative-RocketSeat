@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { 
   Keyboard, 
   Modal, 
@@ -7,6 +7,8 @@ import {
 } from "react-native";
 import * as Yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup"
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Button } from "../../components/Forms/Button";
 import { TransactionTypeButton } from "../../components/Forms/TransactionTypeButton";
@@ -39,6 +41,8 @@ export const Register = () => {
     name: "categoria",
   });
 
+  const dataKey = 'APP_FINANCE:transactions'
+
   const schema = Yup.object().shape({
     name: Yup.string().required('Nome é obrigatório'),
     amount: Yup.number()
@@ -67,7 +71,7 @@ export const Register = () => {
     setCategoryModalOpen(false);
   };
 
-  const handleRegister = (form: FormData) => {
+  const handleRegister = async (form: FormData) => {
 
     if(!transactionType){
       return Alert.alert('Selecione o tipo de transação')
@@ -84,8 +88,25 @@ export const Register = () => {
       category: category.key,
     };
 
-    console.log(data);
+    try{
+
+      await AsyncStorage.setItem(dataKey, JSON.stringify(data))
+
+    }catch(error){
+      console.log(error);
+      Alert.alert('Deu erro')
+    }
   };
+
+    useEffect(() =>{
+      const loadData = async() => {
+
+        const responseDataKey = await AsyncStorage.getItem(dataKey)
+        console.log(JSON.parse(responseDataKey!));
+      } 
+
+      loadData()
+    },[])
 
   return (
     <>
